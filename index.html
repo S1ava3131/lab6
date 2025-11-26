@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объем цилиндра - Вариант 16</title>
+    <style>
+        /* весь CSS код из предыдущего примера */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        /* ... остальные стили ... */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Вычисление объема цилиндра</h2>
+        
+        <div class="formula">
+            Формула: V = π × r² × h
+        </div>
+
+        <form name="cylinderForm">
+            <div class="form-group">
+                <label for="radius">Радиус основания (r):</label>
+                <input type="text" id="radius" name="radius" placeholder="Введите радиус">
+            </div>
+
+            <div class="form-group">
+                <label for="height">Высота цилиндра (h):</label>
+                <input type="text" id="height" name="height" placeholder="Введите высоту">
+            </div>
+
+            <input type="button" value="Вычислить объем" 
+                   onClick="calculateVolume()">
+
+            <div class="form-group">
+                <label for="result">Объем цилиндра (V):</label>
+                <input type="text" id="result" name="result" class="result" readonly placeholder="Результат появится здесь">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function calculateVolume() {
+            let radius = document.cylinderForm.radius.value;
+            let height = document.cylinderForm.height.value;
+            
+            if (radius === "" || height === "") {
+                alert("Пожалуйста, заполните все поля!");
+                return;
+            }
+            
+            radius = parseFloat(radius);
+            height = parseFloat(height);
+            
+            if (isNaN(radius) || isNaN(height)) {
+                alert("Пожалуйста, введите корректные числа!");
+                return;
+            }
+            
+            if (radius <= 0 || height <= 0) {
+                alert("Радиус и высота должны быть положительными числами!");
+                return;
+            }
+            
+            let volume = Math.PI * Math.pow(radius, 2) * height;
+            document.cylinderForm.result.value = volume.toFixed(2);
+        }
+    </script>
+</body>
+</html>
